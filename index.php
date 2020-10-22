@@ -15,6 +15,6 @@
     $a = new Foo;
     $a->self = $a;
   }
-  echo memory_get_usage(), "\n";
+  echo memory_get_usage() - $baseMemory, "\n";
   echo "OK!";
 ?>
