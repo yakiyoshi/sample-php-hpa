@@ -14,10 +14,7 @@
   {
     $a = new Foo;
     $a->self = $a;
-    if ( $i % 500 === 0 )
-    {
-        echo sprintf( '%8d: ', $i ), memory_get_usage() - $baseMemory, "\n";
-    }
   }
+  echo memory_get_usage(), "\n";
   echo "OK!";
 ?>
