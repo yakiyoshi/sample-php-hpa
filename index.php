@@ -4,7 +4,7 @@
     $x += sqrt($x);
   }
   $a = substr(bin2hex(random_bytes($length)), 0, 5);
-  $$a = []
+  $$a = [];
   for($j=0;$j<10000;$j++) {
       $$a[] = $j;
   }
