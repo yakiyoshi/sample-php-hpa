@@ -3,11 +3,21 @@
   for ($i = 0; $i <= 1000000; $i++) {
     $x += sqrt($x);
   }
-  $a = substr(bin2hex(random_bytes(8)), 0, 5);
-  $$a = [];
-  for($j=0;$j<10000;$j++) {
-      $$a[] = $j;
+  class Foo
+  {
+    public $var = '3.14159265359';
   }
-  echo "memory usage:".memory_get_usage() / (1024 * 1024)."MB\n";
+
+  $baseMemory = memory_get_usage();
+
+  for ( $i = 0; $i <= 100000; $i++ )
+  {
+    $a = new Foo;
+    $a->self = $a;
+    if ( $i % 500 === 0 )
+    {
+        echo sprintf( '%8d: ', $i ), memory_get_usage() - $baseMemory, "\n";
+    }
+  }
   echo "OK!";
 ?>
