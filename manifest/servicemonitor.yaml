@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: sample-php-hpa
+  name: sample-php-hpa
+spec:
+  endpoints:
+  - interval: 60s
+    port: apache-exporter
+    scheme: http
+  selector:
+    matchLabels:
+      app: sample-php-hpa

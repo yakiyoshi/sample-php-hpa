@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sample-php-hpa
+  name: sample-php-hpa
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: apache-exporter
+    port: 9117
+    protocol: TCP
+    targetPort: 9117
+  selector:
+    deployment: sample-php-hpa
+  type: ClusterIP

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample-php-hpa
+  name: sample-php-hpa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: sample-php-hpa
+  template:
+    metadata:
+      labels:
+        deployment: sample-php-hpa
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/hpe-test/sample-php-hpa:latest
+        name: sample-php-hpa
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 200m
+            memory: 100Mi
+      - args:
+        - --scrape_uri=http://localhost:8080/server-status/?auto
+        image: image-registry.openshift-image-registry.svc:5000/hpe-test/apache_exporter:1.0
+        name: apache-exporter
+        ports:
+        - containerPort: 9117
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
