@@ -8,6 +8,7 @@
   */
 
   // Memory Stress Test
+  /*
   class Foo
   {
     public $var = '3.14159265359';
@@ -18,6 +19,7 @@
     $a = new Foo;
     $a->self = $a;
   }
+  */
 
   echo "OK!";
 ?>
